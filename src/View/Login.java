@@ -1,0 +1,162 @@
+package View;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import Connection.DBController;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+public class Login extends JFrame {
+
+	public Login() {
+		Container con = getContentPane();
+		JLabel lbbg = new JLabel();
+		lbbg.setIcon(new ImageIcon(Login.class.getResource("/background/gg.png")));
+		lbbg.setSize(1000,505);
+		
+		JPanel pnmain = new JPanel();
+		pnmain.setBounds(250, 60, 500, 300);
+		pnmain.setLayout(new BorderLayout());
+		pnmain.setOpaque(false);
+        
+		
+		JPanel pnmain1 = new JPanel();
+		pnmain1.setLayout(new BorderLayout());
+        pnmain1.setBackground(new Color(255, 255, 255, 30));  // Đặt màu nền trong suốt
+		
+		
+		JPanel pnmain2 = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) pnmain2.getLayout();
+		flowLayout_1.setHgap(10);
+        pnmain2.setBackground(new Color(255, 255, 255, 30));  // Đặt màu nền trong suốt
+		
+		
+		JPanel pn1 = new JPanel();
+		pn1.setForeground(new Color(255, 255, 255));
+		FlowLayout flpn1 = new FlowLayout();
+		flpn1.setVgap(20);
+		pn1.setLayout(flpn1);
+		pn1.setOpaque(false);  // Đặt độ trong suốt
+        
+		
+		
+		JPanel pn2 = new JPanel();
+		GridLayout gl_pn2 = new GridLayout(2,2);
+		gl_pn2.setHgap(-200);
+		gl_pn2.setVgap(50);
+		pn2.setLayout(gl_pn2);
+		pn2.setOpaque(false);  // Đặt độ trong suốt
+        
+		
+		
+		JPanel pn3 = new JPanel();
+		FlowLayout flpn3 = new FlowLayout();
+		flpn3.setVgap(30);
+		pn3.setLayout(flpn3);
+		pn3.setOpaque(false);  // Đặt độ trong suốt
+       
+		
+		JLabel lbloginnow = new JLabel("LOGIN NOW");
+		lbloginnow.setFont(new Font("Arial", Font.BOLD, 17));
+		lbloginnow.setForeground(new Color(153, 255, 51));
+		JLabel lbuser = new JLabel("Username");
+		lbuser.setForeground(new Color(255, 51, 102));
+		lbuser.setFont(new Font("Arial", Font.BOLD, 12));
+		JLabel lbpass = new JLabel("Password");
+		lbpass.setForeground(new Color(255, 255, 153));
+		lbpass.setFont(new Font("Arial", Font.BOLD, 12));
+		JLabel lbregis = new JLabel("New User? Register here");
+		lbregis.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		lbregis.setForeground(new Color(153, 204, 102));
+
+		final JTextField tfuser = new JTextField();
+		final JTextField tfpass = new JTextField();
+		JButton jblogin = new JButton("LOGIN");
+		JButton jbregis = new JButton("Register");
+		
+		
+		pn1.add(lbloginnow);
+		pn2.add(lbuser);
+		pn2.add(tfuser);
+		pn2.add(lbpass);
+		pn2.add(tfpass);
+		
+		pn3.add(jblogin);
+		
+		pnmain1.add(pn1, BorderLayout.NORTH);
+		pnmain1.add(pn2, BorderLayout.CENTER);
+		pnmain1.add(pn3, BorderLayout.SOUTH);
+		
+		pnmain2.add(lbregis);
+		pnmain2.add(jbregis);
+		
+		
+		pnmain.add(pnmain1, BorderLayout.CENTER);
+		pnmain.add(pnmain2, BorderLayout.SOUTH);
+		con.add(pnmain);
+		con.add(lbbg);
+		
+		jblogin.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Connection con = new DBController().getConnection();
+				String sql = "Select * from account WHERE taikhoan = ? AND matkhau = ?";
+				try {
+					PreparedStatement stm = con.prepareStatement(sql);
+					stm.setString(1, tfuser.getText());
+					stm.setString(2, tfpass.getText());
+					ResultSet rs = stm.executeQuery();
+					if (rs.next()) {
+						JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+						setVisible(false);
+						new MainGUI();
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Tài khoản và mật khẩu không chính xác");
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
+		
+		jbregis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new test_resgister();
+				setVisible(false);
+			}
+		});
+		
+		
+		setSize(1000,505);
+		setTitle("Log in VLEAGUE");
+		setLocationRelativeTo(null);
+		setVisible(true);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) {
+		new Login();
+	}
+}
