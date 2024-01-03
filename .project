@@ -16,6 +16,21 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>src/background/5581045.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/5581045.jpg</location>
+		</link>
+		<link>
+			<name>src/background/5623515.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/5623515.jpg</location>
+		</link>
+		<link>
+			<name>src/background/5634934.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/5634934.jpg</location>
+		</link>
+		<link>
 			<name>src/background/Co-Giai-VDQG-NW-2023.jpg</name>
 			<type>1</type>
 			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/Co-Giai-VDQG-NW-2023.jpg</location>
@@ -54,6 +69,16 @@
 			<name>src/background/ronan2.jpg</name>
 			<type>1</type>
 			<location>C:/Users/kimoa/Downloads/45da361e7f63e1b10a94c07653f6f472.jpg</location>
+		</link>
+		<link>
+			<name>src/background/san1.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/5581045.jpg</location>
+		</link>
+		<link>
+			<name>src/background/san2.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/5634934.jpg</location>
 		</link>
 		<link>
 			<name>src/background/sanbong.png</name>

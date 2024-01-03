@@ -31,24 +31,25 @@ public class Login extends JFrame {
 	public Login() {
 		Container con = getContentPane();
 		JLabel lbbg = new JLabel();
-		lbbg.setIcon(new ImageIcon(Login.class.getResource("/background/gg.png")));
+		lbbg.setIcon(new ImageIcon(Login.class.getResource("/background/san1.jpg")));
 		lbbg.setSize(1000,505);
 		
 		JPanel pnmain = new JPanel();
-		pnmain.setBounds(250, 60, 500, 300);
+		pnmain.setBounds(380, 200, 500, 300);
 		pnmain.setLayout(new BorderLayout());
 		pnmain.setOpaque(false);
         
 		
 		JPanel pnmain1 = new JPanel();
 		pnmain1.setLayout(new BorderLayout());
-        pnmain1.setBackground(new Color(255, 255, 255, 30));  // Đặt màu nền trong suốt
+        pnmain1.setBackground(new Color(255, 255, 255, 100));  // Đặt màu nền trong suốt
 		
 		
 		JPanel pnmain2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) pnmain2.getLayout();
-		flowLayout_1.setHgap(10);
-        pnmain2.setBackground(new Color(255, 255, 255, 30));  // Đặt màu nền trong suốt
+		FlowLayout flpn2 = new FlowLayout();
+		flpn2.setHgap(10);
+		pnmain2.setLayout(flpn2);
+        pnmain2.setBackground(new Color(255, 255, 255, 100));  // Đặt màu nền trong suốt
 		
 		
 		JPanel pn1 = new JPanel();
@@ -62,7 +63,7 @@ public class Login extends JFrame {
 		
 		JPanel pn2 = new JPanel();
 		GridLayout gl_pn2 = new GridLayout(2,2);
-		gl_pn2.setHgap(-200);
+		gl_pn2.setHgap(-300);
 		gl_pn2.setVgap(50);
 		pn2.setLayout(gl_pn2);
 		pn2.setOpaque(false);  // Đặt độ trong suốt
@@ -77,21 +78,22 @@ public class Login extends JFrame {
        
 		
 		JLabel lbloginnow = new JLabel("LOGIN NOW");
-		lbloginnow.setFont(new Font("Arial", Font.BOLD, 17));
-		lbloginnow.setForeground(new Color(153, 255, 51));
+		lbloginnow.setFont(new Font("Arial", Font.BOLD, 18));
+		lbloginnow.setForeground(new Color(220, 20, 60));
 		JLabel lbuser = new JLabel("Username");
-		lbuser.setForeground(new Color(255, 51, 102));
-		lbuser.setFont(new Font("Arial", Font.BOLD, 12));
+		lbuser.setForeground(new Color(0, 0, 255));
+		lbuser.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 13));
 		JLabel lbpass = new JLabel("Password");
-		lbpass.setForeground(new Color(255, 255, 153));
-		lbpass.setFont(new Font("Arial", Font.BOLD, 12));
+		lbpass.setForeground(new Color(0, 0, 255));
+		lbpass.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 13));
 		JLabel lbregis = new JLabel("New User? Register here");
-		lbregis.setFont(new Font("Tahoma", Font.ITALIC, 10));
-		lbregis.setForeground(new Color(153, 204, 102));
+		lbregis.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 10));
+		lbregis.setForeground(new Color(124, 252, 0));
 
 		final JTextField tfuser = new JTextField();
 		final JTextField tfpass = new JTextField();
 		JButton jblogin = new JButton("LOGIN");
+		jblogin.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JButton jbregis = new JButton("Register");
 		
 		
@@ -143,13 +145,13 @@ public class Login extends JFrame {
 		jbregis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new test_resgister();
+				new Register();
 				setVisible(false);
 			}
 		});
 		
 		
-		setSize(1000,505);
+		setSize(1280,750);
 		setTitle("Log in VLEAGUE");
 		setLocationRelativeTo(null);
 		setVisible(true);

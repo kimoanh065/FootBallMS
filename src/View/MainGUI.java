@@ -29,13 +29,15 @@ import java.awt.GridLayout;
 public class MainGUI extends JFrame {
 	public MainGUI() {
 		Container con = getContentPane();
+		
 		JPanel pnmain = new JPanel();
+		pnmain.setBounds(80, 100, 1100, 600);
 		FlowLayout fl_pnmain = new FlowLayout();
 		fl_pnmain.setVgap(20);
 		fl_pnmain.setHgap(120);
 		pnmain.setLayout(fl_pnmain);
+		pnmain.setOpaque(false);
 		
-		pnmain.setBorder(BorderFactory.createEmptyBorder(100, 100, 0, 0));
 		
 		JButton jbcauthu = new JButton();
 		jbcauthu.setIcon(new ImageIcon(MainGUI.class.getResource("/background/ronan2.jpg")));
@@ -59,8 +61,7 @@ public class MainGUI extends JFrame {
 		jbxephang.setPreferredSize(buttonSize);
 		
 		JLabel lbimage = new JLabel();
-		lbimage.setIcon(new ImageIcon(MainGUI.class.getResource("/background/sanbong.png")));
-		lbimage.setSize(1300, 750);
+		lbimage.setIcon(new ImageIcon(MainGUI.class.getResource("/background/san2.jpg")));
 		
 		JMenuBar mbar = new JMenuBar();
 		JMenu cauthu = new JMenu("Cầu thủ");
@@ -78,7 +79,7 @@ public class MainGUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new Cauthu();
+				new FootballPlayer();
 				setVisible(false);
 			}
 		});
@@ -86,7 +87,7 @@ public class MainGUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new Cauthu();
+				new FootballPlayer();
 				setVisible(false);
 			}
 		});
@@ -95,7 +96,7 @@ public class MainGUI extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new Doibong();
+				new FootBallTeam();
 				setVisible(false);
 			}
 		});
@@ -143,9 +144,9 @@ public class MainGUI extends JFrame {
 		pnmain.add(jbketqua);
 		pnmain.add(jbxephang);
 		
-		
+		con.add(pnmain);
 		con.add(lbimage);
-		con.add(pnmain, BorderLayout.CENTER);
+		
 		
 	
 		setJMenuBar(mbar);

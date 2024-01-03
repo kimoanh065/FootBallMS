@@ -65,6 +65,7 @@ public class Rank extends JFrame {
 	
 	public Rank() {
 		Container con = getContentPane();
+		
 		JPanel pnmain = new JPanel();
 		pnmain.setBackground(new Color(152, 251, 152));
 		
@@ -72,6 +73,8 @@ public class Rank extends JFrame {
 		fl_pnmain.setVgap(20);
 		fl_pnmain.setHgap(500);
 		pnmain.setLayout(fl_pnmain);
+		pnmain.setBounds(300, 100, 700, 400);
+		pnmain.setOpaque(false);
 		
 		
         JButton jbback = new JButton("Trở lại");
@@ -90,9 +93,7 @@ public class Rank extends JFrame {
         //scrollPane.setOpaque(false); // Đặt thuộc tính không đục lỗ cho JScrollPane
         //scrollPane.getViewport().setOpaque(false);
         
-        Border bd = BorderFactory.createLineBorder(Color.ORANGE);
-		TitledBorder ttlBorder = BorderFactory.createTitledBorder(bd, "Bảng xếp hạng");
-		pnmain.setBorder(ttlBorder);
+        
         
         vT = new Vector();
 		vT.add("Mã đội");
@@ -132,14 +133,15 @@ public class Rank extends JFrame {
 		//ADD thanh phan
 		pnmain.add(scrollPane);
 		pnmain.add(jbback);
-		//con.add(imageLabel);
-		con.add(pnmain, BorderLayout.CENTER);
+		
+		con.add(pnmain);
+		con.add(imageLabel);
 		
 		
 		
 		
 		
-		
+		setTitle("Bảng xếp hạng");
 		setSize(1280,750);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);

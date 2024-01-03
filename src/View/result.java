@@ -304,8 +304,8 @@ public class result extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				tfid.setText("");
-		        jcbteam1.setSelectedItem("BD");
-		        jcbteam2.setSelectedItem("BD");
+		        jcbteam1.setSelectedItem(null);
+		        jcbteam2.setSelectedItem(null);
 		        score1.setText("");
 		        score2.setText("");
 			}

@@ -1,33 +1,12 @@
 package View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -41,24 +20,36 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
+import Connection.DBController;
 import Connection.DBController;
 
-public class Doibong extends JFrame {
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.awt.Font;
+
+public class FootballPlayer extends JFrame {
 	
 	Vector vT, vD;
-	
-	final JTextField tfmadoibong = new JTextField(30);
-	final JTextField tftendoibong= new JTextField(50);
-	final JTextField tffounding= new JTextField(20);
-	final JComboBox jcbmaimage = new JComboBox(getImage());
+	static JComboBox jcbtendoibong;
 	
 	public static Vector getvD() {
 		Connection conn = new DBController().getConnection();
 		Vector vD = new Vector();
-		String sql = "SELECT * FROM vleague.footballteam";
+		String sql = "SELECT footballplayer.ID, Name, Age, Position, Footballname FROM vleague.footballplayer LEFT JOIN vleague.footballteam ON footballplayer.IDFootballTeam = footballteam.ID";
 		PreparedStatement stm;
 		try {
 			stm = conn.prepareStatement(sql);
@@ -79,78 +70,88 @@ public class Doibong extends JFrame {
 		return vD;
 	}
 	
-	public static Vector getImage() {
+	
+	public static Vector getTDB() {
+		Vector v = new Vector();
+		
 		Connection conn = new DBController().getConnection();
 		Vector vD = new Vector();
-		String sql = "SELECT * FROM vleague.image";
+		String sql = "SELECT * FROM vleague.footballteam";
 		PreparedStatement stm;
 		try {
 			stm = conn.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery();
 			while(rs.next()) {
-				vD.add(rs.getString(1));
+				v.add(rs.getString(2));
 			}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return vD;
+		
+		return v;
 	}
 	
-	public Icon getIcon(String d) {
-		int width = 250, height = 300;
-		Image image = new ImageIcon(getClass().getResource("/icon/" + d + ".png")).getImage();
-		Icon icon = new ImageIcon(image.getScaledInstance(width, height, image.SCALE_SMOOTH));
-		return icon;
+	public static String getMDB() {
+		String temp = null;
+		Connection con = new DBController().getConnection();
+		String sql = "SELECT * FROM vleague.footballteam WHERE Footballname = ?";
+		try {
+			PreparedStatement stm = con.prepareStatement(sql);
+			stm.setString(1, (String) jcbtendoibong.getSelectedItem());
+			ResultSet rs = stm.executeQuery();
+			if (rs.next())
+				temp = rs.getString("ID");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		System.out.println(temp);
+		
+		return temp;
+		
 	}
-	
-	
-	
-	public Doibong() {
+
+	public FootballPlayer() {
 		Container con = getContentPane();
 		JPanel pnmain = new JPanel();
 		pnmain.setLayout(new BorderLayout());
 		JPanel pnnorth = new JPanel();
 		pnnorth.setSize(200,400);
+		pnnorth.setLayout(new GridLayout(6, 2, -1000, 15));
 		
-		JPanel pnnorth_center = new JPanel();
-		pnnorth_center.setLayout(new GridLayout(5, 2, -650, 15));
-		JPanel pnnorth_east = new JPanel();
+		JLabel macauthu = new JLabel("Mã cầu thủ");
+		macauthu.setForeground(new Color(255, 0, 0));
+		macauthu.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		final JButton jb_icon = new JButton();
+		JLabel tencauthu = new JLabel("Tên cầu thủ");
+		tencauthu.setForeground(new Color(34, 139, 34));
+		tencauthu.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		//Set JButton trong suot
-		jb_icon.setOpaque(false);
-        jb_icon.setBackground(new Color(0, 0, 0, 100));
+		JLabel tuoi = new JLabel("Tuổi");
+		tuoi.setForeground(new Color(0, 191, 255));
+		tuoi.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		//Set size cho button hien thi anh cua Doi bong
-		Dimension buttonSize = new Dimension(250, 300);
-		jb_icon.setPreferredSize(buttonSize);
-		
+		JLabel chucvu = new JLabel("Vị trí");
+		chucvu.setForeground(new Color(127, 255, 0));
+		chucvu.setFont(new Font("Tahoma", Font.BOLD, 13));
 		JLabel madoibong = new JLabel("Mã đội bóng");
-		madoibong.setForeground(new Color(255, 0, 0));
+		madoibong.setForeground(new Color(210, 105, 30));
 		madoibong.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		JLabel tendoibong = new JLabel("Tên đội bóng");
-		tendoibong.setForeground(new Color(34, 139, 34));
-		tendoibong.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		JLabel founding = new JLabel("Ngày thành lập");
-		founding.setForeground(new Color(0, 191, 255));
-		founding.setFont(new Font("Tahoma", Font.BOLD, 13));
+		final JTextField tfmacauthu = new JTextField(10);
+		final JTextField tftencauthu = new JTextField(10);
+		final JTextField tftuoi= new JTextField(10);
+		final JComboBox jcbchucvu = new JComboBox();
+		jcbchucvu.setModel(new DefaultComboBoxModel(new String[] {"Huấn luyện viên","Thủ môn", "Tiền đạo", "Hậu vệ","Tiền vệ" }));
 		
-		JLabel maimage = new JLabel("Mã ảnh");
-		maimage.setForeground(new Color(210, 105, 30));
-		maimage.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		
-		
-		
+		jcbtendoibong = new JComboBox(getTDB());
 		
 		JLabel emty = new JLabel();
 		
 		JPanel jpbutton = new JPanel();
-		jpbutton.setLayout(new FlowLayout(FlowLayout.CENTER, 60, 10));
+		jpbutton.setLayout(new FlowLayout(FlowLayout.CENTER, 80, 10));
 		
 		JButton jbadd = new JButton("Thêm");
 		JButton jbupdate = new JButton("Sửa");
@@ -164,41 +165,44 @@ public class Doibong extends JFrame {
 		jpbutton.add(jbclear);
 		jpbutton.add(jbback);
 		
-		
-		pnnorth_center.add(madoibong);
-		pnnorth_center.add(tfmadoibong);
-		pnnorth_center.add(tendoibong);
-		pnnorth_center.add(tftendoibong);
-		pnnorth_center.add(founding);
-		pnnorth_center.add(tffounding);
-		pnnorth_center.add(maimage);
-		pnnorth_center.add(jcbmaimage);
-		pnnorth_center.add(emty);
-		pnnorth_center.add(jpbutton);
+		pnnorth.add(macauthu);
+		pnnorth.add(tfmacauthu);
+		pnnorth.add(tencauthu);
+		pnnorth.add(tftencauthu);
+		pnnorth.add(tuoi);
+		pnnorth.add(tftuoi);
+		pnnorth.add(chucvu);
+		pnnorth.add(jcbchucvu);
+		pnnorth.add(madoibong);
+		pnnorth.add(jcbtendoibong);
+		pnnorth.add(emty);
+		pnnorth.add(jpbutton);
 		
 		JPanel pncenter = new JPanel();
-		pncenter.setLayout(new BorderLayout());
-		Border bd = BorderFactory.createLineBorder(Color.ORANGE);
-		TitledBorder ttlBorder = BorderFactory.createTitledBorder(bd, "Danh sách đội bóng");
+		BorderLayout bl_pncenter = new BorderLayout();
+		bl_pncenter.setVgap(100);
+		bl_pncenter.setHgap(50);
+		pncenter.setLayout(bl_pncenter);
+		Border bd = BorderFactory.createLineBorder(Color.BLUE);
+		TitledBorder ttlBorder = BorderFactory.createTitledBorder(bd, "Danh sách cầu thủ");
 		pncenter.setBorder(ttlBorder);
-		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		pncenter.add(scrollPane);
 		
 		vT = new Vector();
-		vT.add("Mã đội bóng");
+		vT.add("Mã cầu thủ");
+		vT.add("Tên cầu thủ");
+		vT.add("Tuổi");
+		vT.add("Chức vụ");
 		vT.add("Tên đội bóng");
-		vT.add("Số thành viên");
-		vT.add("Ngày thành lập");
-		vT.add("Mã image");
 		
 		vD = getvD();
 		
-		
 		final JTable tb = new JTable();
-		tb.setBackground(new Color(248, 248, 255));
+		tb.setForeground(new Color(0, 0, 0));
 		tb.setFont(new Font("Arial", Font.BOLD, 11));
+		tb.setBackground(new Color(240, 255, 240));
 		tb.setModel(new DefaultTableModel(vD, vT));
 		scrollPane.setViewportView(tb);
 		
@@ -210,35 +214,18 @@ public class Doibong extends JFrame {
         for (int i = 0; i < tb.getColumnCount(); i++) {
             tb.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
-        
-        jcbmaimage.addActionListener(new ActionListener() {
-            
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    // Xử lý sự kiện khi giá trị thay đổi
-                    String selectedItem = (String) jcbmaimage.getSelectedItem();
-                    if (selectedItem != null) {
-                        Icon icon = getIcon(selectedItem);
-                        
-                        jb_icon.setIcon(icon);
-                    }
-                } catch (Exception ex) {
-                   
-                    ex.printStackTrace();
-                }
-            }
-        });
 		
 		jbclear.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				tfmadoibong.setText("");
-		        tftendoibong.setText("");
-		        tffounding.setText("");
-		        jcbmaimage.setSelectedItem(null);
+				tfmacauthu.setText("");
+		        tftencauthu.setText("");
+		        tftuoi.setText("");
+		        
 			}
 		});
+		
 		jbback.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -253,19 +240,19 @@ public class Doibong extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Connection con = new DBController().getConnection();
-				String sql = "INSERT INTO vleague.footballteam VALUES (?, ?, ?, ?, ?)";
+				String sql = "INSERT INTO vleague.footballplayer VALUES (?, ?, ?, ?, ?)";
 				try {
 					PreparedStatement stm = con.prepareStatement(sql);
-					stm.setString(1, tfmadoibong.getText());
-					stm.setString(2, tftendoibong.getText());
-					stm.setString(3, "0");
-					stm.setString(4, tffounding.getText());
-					stm.setString(5, (String)jcbmaimage.getSelectedItem() );
+					stm.setString(1, tfmacauthu.getText());
+					stm.setString(2, tftencauthu.getText());
+					stm.setInt(3, Integer.parseInt(tftuoi.getText()));
+					stm.setString(4, jcbchucvu.getSelectedItem() + "");
+					stm.setString(5, getMDB());
 					stm.execute();
-					JOptionPane.showMessageDialog(null, "Thêm đội bóng thành công");
+					JOptionPane.showMessageDialog(null, "Thêm cầu thủ thành công");
 				
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Thêm đội bóng không thành công");
+					JOptionPane.showMessageDialog(null, "Chưa thêm cầu thủ");
 					e1.printStackTrace();
 				}
 				vD = getvD();
@@ -274,7 +261,7 @@ public class Doibong extends JFrame {
 		});
 		
 		
-		
+		final String[] oldid = {""};
 		tb.addMouseListener(new MouseListener() {
 			
 			public void mouseReleased(MouseEvent e) {
@@ -301,28 +288,42 @@ public class Doibong extends JFrame {
 				// TODO Auto-generated method stub
 				int row = tb.getSelectedRow();
 				int column = tb.getSelectedColumn();
-				tfmadoibong.setText((String)tb.getValueAt(row, 0));
-				tftendoibong.setText((String)tb.getValueAt(row, 1));
-				tffounding.setText((String)tb.getValueAt(row, 3));
-				jcbmaimage.setSelectedItem((String)tb.getValueAt(row, 4));
-	
+				
+				tfmacauthu.setText((String)tb.getValueAt(row, 0));
+				tftencauthu.setText((String)tb.getValueAt(row, 1));
+				tftuoi.setText((String)tb.getValueAt(row, 2));
+				jcbchucvu.setSelectedItem((String)tb.getValueAt(row, 3));
+				jcbtendoibong.setSelectedItem((String)tb.getValueAt(row, 4));
 				
 			}
 		});
 		
+		tb.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		    public void valueChanged(ListSelectionEvent event) {
+		        int selectedRow = tb.getSelectedRow();
+		        int idColumnIndex = 0; 
+
+		        if (selectedRow != -1) {
+		            oldid[0] = (String) tb.getValueAt(selectedRow, idColumnIndex);
+		        }
+		    }
+		});
+		
 		jbupdate.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Connection con = new DBController().getConnection();
-				String sql = "UPDATE vleague.footballteam SET ID = ?, footballname = ?, founding = ?, idimage = ? WHERE ID = ?";
+				String sql = "UPDATE vleague.footballplayer SET ID = ?, Name = ?, Age = ?, Position = ?, IDFootballTeam = ? WHERE ID = ?";
 				try {
 					PreparedStatement stm = con.prepareStatement(sql);
-					stm.setString(1, tfmadoibong.getText());
-					stm.setString(2, tftendoibong.getText());
-					stm.setString(3, tffounding.getText());
-					stm.setString(4, (String) jcbmaimage.getSelectedItem());
-					stm.setString(5, tfmadoibong.getText());
+					stm.setString(1, tfmacauthu.getText());
+					stm.setString(2, tftencauthu.getText());
+					stm.setInt(3, Integer.parseInt(tftuoi.getText()));
+					stm.setString(4, jcbchucvu.getSelectedItem() + "");
+					stm.setString(5, jcbtendoibong.getSelectedItem() + "");
+					stm.setString(6, oldid[0]);
+					stm.execute();
+					
 					stm.execute();
 					JOptionPane.showMessageDialog(null, "Cập nhập thành công");
 					
@@ -335,37 +336,37 @@ public class Doibong extends JFrame {
 				}
 			}
 		});
+		
+		
 		jbdelete.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Connection con = new DBController().getConnection();
-				String sql = "DELETE FROM vleague.footballteam WHERE ID = ?";
+				String sql = "DELETE FROM vleague.footballplayer WHERE ID = ?";
 				try {
 					PreparedStatement stm = con.prepareStatement(sql);
-					stm.setString(1, tfmadoibong.getText());
+					stm.setString(1, tfmacauthu.getText());
 					
 					int choose = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa cầu thủ này không?");
 					if (choose == 0) {
 						stm.execute();
-						JOptionPane.showMessageDialog(null, "Xóa thành công");
+						JOptionPane.showMessageDialog(null, "Xoa thanh cong");
 						
+						sql = "UPDATE vleague.footballteam set quantity = (quantity - 1) WHERE ID = ?";
+						stm = con.prepareStatement(sql);
+						stm.setString(1, getMDB());
+						stm.execute();
 						vD = getvD();
 						tb.setModel(new DefaultTableModel(vD, vT));
 					}
 				} catch (Exception e2) {
 					// TODO: handle exception
-					JOptionPane.showMessageDialog(null, "Xóa không thành công");
+					JOptionPane.showMessageDialog(null, "Xoa khong thanh cong");
 				}
 				}
 		});;
 		
-		pnnorth.setLayout(new BorderLayout());
-		pnnorth.add(pnnorth_center, BorderLayout.CENTER);
-		pnnorth.add(pnnorth_east, BorderLayout.EAST);
-		pnnorth_east.setLayout(new FlowLayout(FlowLayout.CENTER, 80, 5));
-		
-		pnnorth_east.add(jb_icon);
 		pnmain.add(pnnorth, BorderLayout.NORTH);
 		
 		pnmain.add(pncenter, BorderLayout.CENTER);
@@ -379,7 +380,6 @@ public class Doibong extends JFrame {
 		setResizable(false);
 	}
 	public static void main(String[] args) {
-		new Doibong();
+		new FootballPlayer();
 	}
-
 }
