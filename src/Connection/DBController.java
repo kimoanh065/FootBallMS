@@ -17,6 +17,7 @@ public class DBController {
 			   String url = "jdbc:mysql://localhost/football";
 			   Class.forName ("com.mysql.cj.jdbc.Driver");
 			   conn = DriverManager.getConnection(url, userName, password);
+			   conn.setAutoCommit(true);
 		} catch(Exception e){
 			   System.out.println(e.getMessage());
 		}

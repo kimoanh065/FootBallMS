@@ -291,6 +291,7 @@ public class result extends JFrame {
 					
 					vD = getvD();
 					tb.setModel(new DefaultTableModel(vD, vT));
+					
 				} catch (Exception e2) {
 					// TODO: handle exception
 					JOptionPane.showMessageDialog(null, "Cập nhập không thành công");
@@ -319,9 +320,7 @@ public class result extends JFrame {
 			}
 		});
 		//ADD thanh phan
-		
-
-		
+	
 		jpbutton.add(jbupdate);
 		jpbutton.add(jbclear);
 		jpbutton.add(jbback);

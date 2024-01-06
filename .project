@@ -16,19 +16,19 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/background/5581045.jpg</name>
+			<name>src/background/Banner-CupQG.png</name>
 			<type>1</type>
-			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/5581045.jpg</location>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/Banner-CupQG.png</location>
 		</link>
 		<link>
-			<name>src/background/5623515.jpg</name>
+			<name>src/background/Banner-HNQG.png</name>
 			<type>1</type>
-			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/5623515.jpg</location>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/Banner-HNQG (1).png</location>
 		</link>
 		<link>
-			<name>src/background/5634934.jpg</name>
+			<name>src/background/Banner-VDQG.png</name>
 			<type>1</type>
-			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/5634934.jpg</location>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/Banner-VDQG (1).png</location>
 		</link>
 		<link>
 			<name>src/background/Co-Giai-VDQG-NW-2023.jpg</name>
@@ -49,6 +49,16 @@
 			<name>src/background/cauthu.jpg</name>
 			<type>1</type>
 			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/97d79b3ed231e6e24623e369b32f9b2d.jpg</location>
+		</link>
+		<link>
+			<name>src/background/dong-luc.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/dong-luc-2k3.png</location>
+		</link>
+		<link>
+			<name>src/background/fpt-play.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/fpt-play-2k3.png</location>
 		</link>
 		<link>
 			<name>src/background/iconball.jpg</name>
@@ -81,6 +91,21 @@
 			<location>C:/Users/kimoa/Downloads/5634934.jpg</location>
 		</link>
 		<link>
+			<name>src/background/san3.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/football-composition-with-copyspace-right (1).jpg</location>
+		</link>
+		<link>
+			<name>src/background/san4.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/cool-soccer (1).jpg</location>
+		</link>
+		<link>
+			<name>src/background/san5.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/soccer-ball-on-the-football-field-background-free-video.jpg</location>
+		</link>
+		<link>
 			<name>src/background/sanbong.png</name>
 			<type>1</type>
 			<location>C:/Users/kimoa/Downloads/gg.png</location>
@@ -89,6 +114,11 @@
 			<name>src/background/schedule.png</name>
 			<type>1</type>
 			<location>C:/Users/kimoa/Downloads/393680728-704045151753914-8719403509094116108-n-6626.png</location>
+		</link>
+		<link>
+			<name>src/background/soccer1.jpg</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/pic-soccer (1).jpg</location>
 		</link>
 		<link>
 			<name>src/background/vleague2023.jpg</name>
@@ -169,6 +199,21 @@
 			<name>src/icon/VT.png</name>
 			<type>1</type>
 			<location>C:/Users/kimoa/Documents/DuAnCuoiKyJava/Viettel_FC_2021.svg.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/home.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/home_FILL0_wght400_GRAD0_opsz24.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/refresh.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/refresh_FILL0_wght400_GRAD0_opsz24.png</location>
+		</link>
+		<link>
+			<name>src/iconbutton/search.png</name>
+			<type>1</type>
+			<location>C:/Users/kimoa/Downloads/search_FILL0_wght400_GRAD0_opsz24.png</location>
 		</link>
 	</linkedResources>
 </projectDescription>

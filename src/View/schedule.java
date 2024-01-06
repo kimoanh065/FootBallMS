@@ -113,7 +113,7 @@ public class schedule extends JFrame {
 	}
 	
 	public Icon getIcon(String d) {
-		int width = 250, height = 250;
+		int width = 200, height = 230;
 		Image image = new ImageIcon(getClass().getResource("/icon/" + d + ".png")).getImage();
 		Icon icon = new ImageIcon(image.getScaledInstance(width, height, image.SCALE_SMOOTH));
 		return icon;
@@ -308,7 +308,7 @@ public class schedule extends JFrame {
 				try {
 					PreparedStatement stm = con.prepareStatement(sql);
 					stm.setString(1, tfid.getText());
-					stm.setString(2, (String) jcbteam2.getSelectedItem());
+					stm.setString(2, (String) jcbteam1.getSelectedItem());
 					stm.setString(3, (String) jcbteam2.getSelectedItem());
 					stm.setString(4, tfngay.getText());
 					stm.setString(5, tfgio.getText());

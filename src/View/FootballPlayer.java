@@ -75,7 +75,6 @@ public class FootballPlayer extends JFrame {
 		Vector v = new Vector();
 		
 		Connection conn = new DBController().getConnection();
-		Vector vD = new Vector();
 		String sql = "SELECT * FROM vleague.footballteam";
 		PreparedStatement stm;
 		try {

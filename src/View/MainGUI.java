@@ -53,7 +53,7 @@ public class MainGUI extends JFrame {
 		jblich.setPreferredSize(buttonSize);
 		
 		JButton jbketqua = new JButton();
-		jbketqua.setIcon(new ImageIcon(MainGUI.class.getResource("/background/result.jpg")));
+		jbketqua.setIcon(new ImageIcon(MainGUI.class.getResource("/background/soccer1.jpg")));
 		jbketqua.setPreferredSize(buttonSize);
 		
 		JButton jbxephang = new JButton();
@@ -75,6 +75,10 @@ public class MainGUI extends JFrame {
 		
 		JMenuItem itemdscauthu = new JMenuItem("Danh sách");
 		
+		JMenuItem itemqldoibong = new JMenuItem("Quản lý");
+		
+		JMenuItem itemtaitro = new JMenuItem("Tài trợ");
+		
 		jbcauthu.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -92,12 +96,39 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
+		itemdscauthu.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new PlayerList();
+				setVisible(false);
+			}
+		});
+		
 		jbdoibong.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				new FootBallTeam();
 				setVisible(false);
+			}
+		});
+		
+		itemqldoibong.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new FootBallTeam();
+				setVisible(false);
+			}
+		});
+		
+		itemtaitro.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				new Sponsor();
 			}
 		});
 		
@@ -130,6 +161,10 @@ public class MainGUI extends JFrame {
 		
 		cauthu.add(itemdscauthu);
 		cauthu.add(itemqlcauthu);
+		
+		doibong.add(itemqldoibong);
+		
+		taitro.add(itemtaitro);
 		
 		mbar.add(cauthu);
 		mbar.add(doibong);

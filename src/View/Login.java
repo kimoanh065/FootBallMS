@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -91,7 +92,7 @@ public class Login extends JFrame {
 		lbregis.setForeground(new Color(124, 252, 0));
 
 		final JTextField tfuser = new JTextField();
-		final JTextField tfpass = new JTextField();
+		final JPasswordField tfpass = new JPasswordField();
 		JButton jblogin = new JButton("LOGIN");
 		jblogin.setFont(new Font("Tahoma", Font.BOLD, 12));
 		JButton jbregis = new JButton("Register");

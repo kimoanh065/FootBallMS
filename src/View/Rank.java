@@ -87,8 +87,8 @@ public class Rank extends JFrame {
         imageLabel.setSize(1280, 750);
         
 		JScrollPane scrollPane = new JScrollPane();
-		Dimension preferredSize = new Dimension(700,260);
-        scrollPane.setPreferredSize(preferredSize);
+		Dimension scrollsize = new Dimension(700,260);
+        scrollPane.setPreferredSize(scrollsize);
         
         //scrollPane.setOpaque(false); // Đặt thuộc tính không đục lỗ cho JScrollPane
         //scrollPane.getViewport().setOpaque(false);
