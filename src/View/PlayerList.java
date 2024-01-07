@@ -189,6 +189,7 @@ public class PlayerList extends JFrame {
 					stm.setString(2, tfsearch.getText());
 	
 					ResultSet rs = stm.executeQuery();
+					//
 					while(rs.next()) {
 						vtemp.add(rs.getString(1));
 						vtemp.add(rs.getString(2));
