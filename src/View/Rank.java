@@ -77,7 +77,8 @@ public class Rank extends JFrame {
 		pnmain.setOpaque(false);
 		
 		
-        JButton jbback = new JButton("Trở lại");
+        JButton jbback = new JButton();
+        jbback.setIcon(new ImageIcon(Rank.class.getResource("/iconbutton/home.png")));
         
         Dimension buttonSize = new Dimension(80, 40);
 		jbback.setPreferredSize(buttonSize);

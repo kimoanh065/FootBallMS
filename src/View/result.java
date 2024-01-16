@@ -134,7 +134,9 @@ public class result extends JFrame {
 		
 		final JTextField tfid = new JTextField();
 		final JComboBox jcbteam1 = new JComboBox(getMDB());
+		jcbteam1.setSelectedItem(null);
 		final JComboBox jcbteam2 = new JComboBox(getMDB());
+		jcbteam2.setSelectedItem(null);
 		final JTextField score1 = new JTextField();
 		final JTextField score2 = new JTextField();
 		

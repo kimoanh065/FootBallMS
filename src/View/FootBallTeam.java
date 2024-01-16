@@ -105,7 +105,6 @@ public class FootBallTeam extends JFrame {
 	}
 	
 	
-	
 	public FootBallTeam() {
 		Container con = getContentPane();
 		JPanel pnmain = new JPanel();
@@ -142,9 +141,6 @@ public class FootBallTeam extends JFrame {
 		JLabel maimage = new JLabel("Mã ảnh");
 		maimage.setForeground(new Color(210, 105, 30));
 		maimage.setFont(new Font("Tahoma", Font.BOLD, 13));
-		
-		
-		
 		
 		
 		JLabel emty = new JLabel();

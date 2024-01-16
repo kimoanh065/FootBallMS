@@ -6,18 +6,31 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class Sponsor extends JFrame {
 
 	public Sponsor() {
 		Container con = getContentPane();
+		
+		JPanel pnicon = new JPanel();
+		pnicon.setBounds(0, 0, 1280, 100);
+		pnicon.setOpaque(false);
+		pnicon.setLayout(new FlowLayout(FlowLayout.LEADING));
+		
+		JButton jbhome = new JButton();
+		jbhome.setIcon(new ImageIcon(Sponsor.class.getResource("/iconbutton/home.png")));
+		
+		
 		JPanel pnmain = new JPanel();
 		pnmain.setLayout(new BorderLayout());
 		pnmain.setBounds(0, 100, 1280, 750);
@@ -88,6 +101,17 @@ public class Sponsor extends JFrame {
 		lb5.setIcon(new ImageIcon(Sponsor.class.getResource("/background/dong-luc.png")));
 		lb5.setPreferredSize(sizelabel2);
 		
+		jbhome.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				new MainGUI();
+			}
+		});
+		
+		//ADD
+		
 		pncenter1.add(lbsponsor1);
 		
 		pncenter2.add(lb1);
@@ -107,7 +131,10 @@ public class Sponsor extends JFrame {
 		pnmain.add(pncenter, BorderLayout.NORTH);
 		pnmain.add(pnsouth, BorderLayout.CENTER);
 		
+		pnicon.add(jbhome);
+		
 		con.add(pnmain);
+		con.add(pnicon);
 		con.add(lbbackground);
 		
 		

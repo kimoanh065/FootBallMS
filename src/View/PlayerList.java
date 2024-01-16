@@ -66,6 +66,7 @@ public class PlayerList extends JFrame {
 		return vD;
 	}
 	
+	
 	public static Vector getTDB() {
 		Vector v = new Vector();
 		
@@ -179,25 +180,23 @@ public class PlayerList extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Vector vtemp = new Vector();
 				Vector vS = new Vector();
 				Connection con = new DBController().getConnection();
-				String sql = "SELECT footballplayer.ID, Name, Age, Position, Footballname FROM vleague.footballplayer JOIN vleague.footballteam ON footballplayer.IDFootballTeam = footballteam.ID WHERE footballplayer.ID = ? OR footballplayer.Name = ?";
+				String sql = "SELECT footballplayer.ID, Name, Age, Position, Footballname FROM vleague.footballplayer JOIN vleague.footballteam ON footballplayer.IDFootballTeam = footballteam.ID WHERE footballplayer.Name LIKE ? "; 
 				try {
 					PreparedStatement stm = con.prepareStatement(sql);
-					stm.setString(1, tfsearch.getText());
-					stm.setString(2, tfsearch.getText());
-	
+					stm.setString(1, "%" +tfsearch.getText()+"%");
+
 					ResultSet rs = stm.executeQuery();
-					//
-					while(rs.next()) {
+					while (rs.next()) {
+						Vector vtemp = new Vector();
 						vtemp.add(rs.getString(1));
 						vtemp.add(rs.getString(2));
 						vtemp.add(rs.getString(3));
 						vtemp.add(rs.getString(4));
 						vtemp.add(rs.getString(5));
 						vS.add(vtemp);
-						System.out.println(vS);
+						
 					}
 					tb.setModel(new DefaultTableModel(vS, vT));
 					DefaultTableCellRenderer centerrenderer = new DefaultTableCellRenderer();
@@ -206,12 +205,12 @@ public class PlayerList extends JFrame {
 					for (int i = 0; i<tb.getColumnCount();i++) {
 						tb.getColumnModel().getColumn(i).setCellRenderer(centerrenderer);
 					}
-				} catch (Exception e2) {
-					// TODO: handle exception
-					
-				}		
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						
 			}
-		});
+			}});
 		
 		jcbfilter.addActionListener(new ActionListener() {
 			
@@ -232,7 +231,9 @@ public class PlayerList extends JFrame {
 						vtemp.add(rs.getString(4));
 						vtemp.add(rs.getString(5));
 						vS.add(vtemp);
+						
 					}
+					
 					tb.setModel(new DefaultTableModel(vS, vT));
 					DefaultTableCellRenderer centerrenderer = new DefaultTableCellRenderer();
 					centerrenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);

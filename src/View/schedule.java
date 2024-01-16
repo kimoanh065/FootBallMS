@@ -159,10 +159,13 @@ public class schedule extends JFrame {
 		
 		final JTextField tfid = new JTextField();
 		final JComboBox jcbteam1 = new JComboBox(getMDB());
+		jcbteam1.setSelectedItem(null);
 		final JComboBox jcbteam2 = new JComboBox(getMDB());
+		jcbteam2.setSelectedItem(null);
 		final JTextField tfngay = new JTextField();
 		final JTextField tfgio = new JTextField();
 		final JComboBox jcbsvd = new JComboBox(getSVD());
+		jcbsvd.setSelectedItem(null);
 		
 		
 		JButton jbadd = new JButton("Thêm");
